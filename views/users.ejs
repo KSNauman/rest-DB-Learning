@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All users</title>
+    <style>
+        table,
+        th,
+        tr,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#add-user-section">
+        <button id="scroll-button">Go to add new user</button>
+    </a>
+    <table>
+        <!-- <caption>user list</caption> -->
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Username</th>
+        </tr>
+        <% for(let user of result){ %>
+            <tr>
+                <td>
+                    <%= user.id %>
+                </td>
+                <td>
+                    <%= user.email %>
+                </td>
+                <td>
+                    <%= user.username %>
+                </td>
+                <td>
+                    <form action="/user/<%= user.id %>/edit" method="get">
+                        <button>edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/user/<%=user.id %>/delete" method="get">
+                        <button style="background-color: rgb(85, 15, 15); color: aliceblue;">DELETE</button>
+                    </form>
+                </td>
+            </tr>
+            <%} %>
+    </table>
+    <form id="add-user-section" action="/user/new" method="get">
+        <h2>Add a new user <button>Add</button></h2>
+    </form>
+</body>
